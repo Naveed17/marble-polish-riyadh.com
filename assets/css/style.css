@@ -531,6 +531,7 @@ button {
 
 .hero-text {
   position: relative;
+  padding-top: 10%;
 }
 
 .hero-lang-content {
