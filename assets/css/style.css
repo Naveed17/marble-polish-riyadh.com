@@ -296,9 +296,6 @@ button {
   font-size: 1.125rem;
   font-weight: 800;
   color: var(--primary-teal);
-  font-family: 'Arial', sans-serif;
-  direction: rtl;
-  text-align: right;
 }
 
 .logo-subtitle {

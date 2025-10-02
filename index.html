@@ -18,7 +18,6 @@
     <meta name="robots" content="max-image-preview:large">
     <style>
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--dark-color);
             background-color: #ffffff;
@@ -1255,6 +1254,18 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            function loadFont(name, url) {
+                // Remove old font link if exists
+                const oldLink = document.getElementById("dynamic-font");
+                if (oldLink) oldLink.remove();
+
+                // Add new font link
+                const link = document.createElement("link");
+                link.id = "dynamic-font";
+                link.rel = "stylesheet";
+                link.href = url;
+                document.head.appendChild(link);
+            }
             // ===== HERO SLIDER FUNCTIONALITY =====
             let currentSlide = 0;
             const slides = document.querySelectorAll('.slider-slide');
@@ -1317,7 +1328,26 @@
             updateAllLanguageContent('ar');
             updateSlideLanguage('ar');
             document.body.setAttribute('data-current-lang', 'ar');
+            function setLanguage(targetLang) {
+                if (targetLang === 'ar') {
+                    document.documentElement.setAttribute('lang', 'ar');
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    document.body.setAttribute('data-current-lang', 'ar');
 
+                    // Load Arabic font (Cairo)
+                    loadFont("Tajawal", "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600&display=swap");
+                    document.body.style.fontFamily = "'Tajawal', sans-serif";
+                } else {
+                    document.documentElement.setAttribute('lang', 'en');
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    document.body.setAttribute('data-current-lang', 'en');
+
+                    // Load English font (Inter)
+                    loadFont("Inter", "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+                    document.body.style.fontFamily = "'Inter', sans-serif";
+                }
+            }
+            setLanguage('ar');
             langButtons.forEach(btn => {
                 btn.addEventListener('click', function () {
                     const targetLang = this.getAttribute('data-lang');
@@ -1345,18 +1375,8 @@
                         // Update slide content language
                         updateSlideLanguage(targetLang);
 
-                        // Update body direction for Arabic
-                        if (targetLang === 'ar') {
-                            document.documentElement.setAttribute('lang', 'ar');
-                            document.documentElement.setAttribute('dir', 'rtl');
-                            document.body.setAttribute('data-current-lang', 'ar');
 
-                        } else {
-                            document.documentElement.setAttribute('lang', 'en');
-                            document.documentElement.setAttribute('dir', 'ltr');
-                            document.body.setAttribute('data-current-lang', 'en');
-                        }
-
+                        setLanguage(targetLang)
                     }
                 });
             });
