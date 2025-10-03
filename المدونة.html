@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدونتنا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        /* Blog Page Specific Styles */
+        .blog-page {
+            padding: 120px 0 80px;
+            background: var(--light-color);
+        }
+
+        .hero {
+            margin-bottom: 60px;
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .blog-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .blog-hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .blog-hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .blog-hero-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .blog-hero-phone:hover {
+            background: #e69500;
+            transform: translateY(-2px);
+        }
+
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition-smooth);
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .blog-post:hover .post-image img {
+            transform: scale(1.05);
+        }
+
+        .post-content {
+            padding: 30px;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post-category {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            line-height: 1.3;
+        }
+
+        .post-excerpt {
+            color: var(--secondary-color);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .post-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .post-link:hover {
+            gap: 12px;
+        }
+
+        /* Blog Sidebar */
+        .blog-sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-widget {
+            margin-bottom: 40px;
+        }
+
+        .sidebar-widget:last-child {
+            margin-bottom: 0;
+        }
+
+        .widget-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        [dir="rtl"] .footer-section h4::after {
+            left: unset;
+            right: 0
+        }
+
+        .recent-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .recent-post {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .recent-post-image {
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .recent-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recent-post-content h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .recent-post-content span {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+        }
+
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .tag:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .blog-sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-page {
+                padding: 100px 0 60px;
+            }
+
+            .blog-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .post-image {
+                height: 250px;
+            }
+
+            .post-content {
+                padding: 25px;
+            }
+
+            .post-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-hero-title {
+                font-size: 2rem;
+            }
+
+            .blog-hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .post-title {
+                font-size: 1.3rem;
+            }
+
+            .blog-sidebar {
+                padding: 20px;
+            }
+        }
+
+        /* Language Toggle in Header */
+        .header .language-toggle {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Ensure proper RTL/LTR alignment */
+        [dir="rtl"] .blog-container {
+            direction: rtl;
+        }
+
+        [dir="ltr"] .blog-container {
+            direction: ltr;
+        }
+
+        .nav {
+            width: 100%;
+            margin-inline-start: 60px;
+        }
+
+        .language-toggle {
+            margin-inline-start: auto;
+        }
+
+        .logo-title {
+            width: max-content
+        }
+
+        @media screen and (max-width:768px) {
+            .nav {
+                width: auto;
+                margin-inline-start: 0;
+            }
+
+            .language-toggle {
+                margin-inline-start: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="home blog wp-embed-responsive wp-theme-marble-polish-theme home-page lang-ar">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="./assets/images/app-logo.png" alt="Floor Care Logo" class="logo-icon">
+                    <div class="logo-text">
+                        <span class="logo-title">جلي بلاط الرياض</span>
+                        <span class="logo-subtitle">Floor Care</span>
+                    </div>
+                </div>
+
+                <nav class="nav">
+                    <ul>
+                        <li><a href="جلي-بلاط-الرياض.html">
+                                <span class="lang-content" data-lang="en" style="display: none;">Marble Polishing</span>
+                                <span class="lang-content" data-lang="ar">جلي بلاط الرياض</span>
+                            </a></li>
+                        <li><a href="تلميع-الرخام-الرياض.html">
+                                <span class="lang-content" data-lang="en" style="display: none;">Marble Care</span>
+                                <span class="lang-content" data-lang="ar">تلميع الرخام الرياض</span>
+                            </a></li>
+                        <li><a href="المدونة.html" class="active">
+                                <span class="lang-content" data-lang="en" style="display: none;">Blog</span>
+                                <span class="lang-content" data-lang="ar">المدونة</span>
+                            </a></li>
+
+                        <div class="language-toggle">
+                            <button class="lang-btn" data-lang="en">
+                                <i class="fas fa-globe"></i>
+                                English
+                            </button>
+                            <button class="lang-btn active" data-lang="ar">
+                                <i class="fas fa-globe"></i>
+                                العربية
+                            </button>
+                        </div>
+                    </ul>
+                </nav>
+
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-page">
+
+        <section class="hero">
+            <div class="hero-background"
+                style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80');">
+            </div>
+            <div class="hero-overlay"></div>
+
+            <div class="container">
+                <div class="hero-container">
+                    <div class="hero-text">
+                        <!-- English Content -->
+                        <div class="lang-content" data-lang="en" style="display: none;">
+                            <div class="hero-badge">
+                                <i class="fas fa-blog"></i>
+                                <span>Our Blog</span>
+                            </div>
+                            <h1 class="hero-title">Marble Care Insights & Tips</h1>
+                            <p class="hero-subtitle">Discover expert advice, latest trends, and professional tips for
+                                maintaining and enhancing your marble surfaces. Stay updated with the best practices in
+                                marble
+                                care.</p>
+                        </div>
+
+                        <!-- Arabic Content -->
+                        <div class="lang-content" data-lang="ar">
+                            <div class="hero-badge">
+                                <i class="fas fa-blog"></i>
+                                <span>مدونتنا</span>
+                            </div>
+                            <h1 class="hero-title">نصائح ورؤى حول العناية بالرخام</h1>
+                            <p class="hero-subtitle">اكتشف النصائح الخبيرة، أحدث الاتجاهات، والنصائح المهنية للحفاظ على
+                                أسطح
+                                الرخام الخاصة بك وتحسينها. ابق على اطلاع بأفضل الممارسات في العناية بالرخام.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <div class="blog-container">
+                <!-- Main Blog Content -->
+                <div class="blog-posts">
+                    <!-- Blog Post 1 -->
+                    <article class="blog-post">
+                        <div class="post-image">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Floor Polishing Techniques">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <div class="post-meta-item">
+                                    <i class="far fa-calendar"></i>
+                                    <span>20 يناير 2024</span>
+                                </div>
+                                <div class="post-meta-item">
+                                    <i class="far fa-clock"></i>
+                                    <span>6 دقائق قراءة</span>
+                                </div>
+                                <div class="post-category">جلي بلاط</div>
+                            </div>
+                            <h2 class="post-title">
+                                <span class="lang-content" data-lang="en" style="display: none;">Modern Floor Polishing
+                                    Techniques Used in Riyadh</span>
+                                <span class="lang-content" data-lang="ar">تقنيات جلي البلاط الحديثة المستخدمة في
+                                    الرياض</span>
+                            </h2>
+                            <p class="post-excerpt">
+                                <span class="lang-content" data-lang="en" style="display: none;">Discover the advanced
+                                    floor polishing techniques that are transforming homes and businesses in Riyadh.
+                                    Learn about diamond polishing, crystallization, and other modern methods.</span>
+                                <span class="lang-content" data-lang="ar">اكتشف تقنيات جلي البلاط المتقدمة التي تحول
+                                    المنازل والأعمال في الرياض. تعرف على التلميع الماسي والتبلور والطرق الحديثة
+                                    الأخرى.</span>
+                            </p>
+                            <a href="./جلي-بلاط-الرياض-0536550372.html" class="post-link">
+                                <span class="lang-content" data-lang="en" style="display: none;">Read More</span>
+                                <span class="lang-content" data-lang="ar">اقرأ المزيد</span>
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="blog-post">
+                        <div class="post-image">
+                            <img src="./assets/images/upload-15.jpg" alt="Floor Maintenance">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <div class="post-meta-item">
+                                    <i class="far fa-calendar"></i>
+                                    <span>18 يناير 2024</span>
+                                </div>
+                                <div class="post-meta-item">
+                                    <i class="far fa-clock"></i>
+                                    <span>5 دقائق قراءة</span>
+                                </div>
+                                <div class="post-category">صيانة الأرضيات</div>
+                            </div>
+                            <h2 class="post-title">
+                                <span class="lang-content" data-lang="en" style="display: none;">How to Maintain Your
+                                    Polished Floors in Riyadh Climate</span>
+                                <span class="lang-content" data-lang="ar">كيف تحافظ على أرضياتك المصقولة في مناخ
+                                    الرياض</span>
+                            </h2>
+                            <p class="post-excerpt">
+                                <span class="lang-content" data-lang="en" style="display: none;">Essential maintenance
+                                    tips for keeping your polished floors in perfect condition despite Riyadh's
+                                    challenging climate conditions including dust and temperature changes.</span>
+                                <span class="lang-content" data-lang="ar">نصائح صيانة أساسية للحفاظ على أرضياتك المصقولة
+                                    في حالة مثالية رغم ظروف مناخ الرياض الصعبة بما في ذلك الغبار وتغيرات درجة
+                                    الحرارة.</span>
+                            </p>
+                            <a href="./تلميع-الرخام-الرياض-0536550372.html" class="post-link">
+                                <span class="lang-content" data-lang="en" style="display: none;">Read More</span>
+                                <span class="lang-content" data-lang="ar">اقرأ المزيد</span>
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="blog-post">
+                        <div class="post-image">
+                            <img src="./assets/images/upload-16.jpg" alt="Cost of Polishing">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <div class="post-meta-item">
+                                    <i class="far fa-calendar"></i>
+                                    <span>15 يناير 2024</span>
+                                </div>
+                                <div class="post-meta-item">
+                                    <i class="far fa-clock"></i>
+                                    <span>4 دقائق قراءة</span>
+                                </div>
+                                <div class="post-category">أسعار الخدمات</div>
+                            </div>
+                            <h2 class="post-title">
+                                <span class="lang-content" data-lang="en" style="display: none;">Cost of Professional
+                                    Floor Polishing in Riyadh - Complete Guide</span>
+                                <span class="lang-content" data-lang="ar">تكلفة جلي البلاط الاحترافي في الرياض - دليل
+                                    شامل</span>
+                            </h2>
+                            <p class="post-excerpt">
+                                <span class="lang-content" data-lang="en" style="display: none;">Understand the factors
+                                    that affect the cost of professional floor polishing in Riyadh. Get insights into
+                                    pricing for different types of floors and areas.</span>
+                                <span class="lang-content" data-lang="ar">افهم العوامل التي تؤثر على تكلفة جلي البلاط
+                                    الاحترافي في الرياض. احصل على نظرة ثاقبة للتسعير لأنواع الأرضيات والمناطق
+                                    المختلفة.</span>
+                            </p>
+                            <a href="./جلي-بلاط-وتلميع-رخام-0536550372.html" class="post-link">
+                                <span class="lang-content" data-lang="en" style="display: none;">Read More</span>
+                                <span class="lang-content" data-lang="ar">اقرأ المزيد</span>
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Sidebar -->
+                <aside class="blog-sidebar">
+                    <!-- Categories Widget -->
+
+
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">
+                            <span class="lang-content" data-lang="en" style="display: none;">Recent Posts</span>
+                            <span class="lang-content" data-lang="ar">المشاركات الأخيرة</span>
+                        </h3>
+                        <div class="recent-posts">
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                        alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>
+                                        <span class="lang-content" data-lang="en" style="display: none;">Best Floors for
+                                            Riyadh Homes</span>
+                                        <span class="lang-content" data-lang="ar">أفضل الأرضيات لمنازل الرياض</span>
+                                    </h4>
+                                    <span>12 يناير 2024</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                        alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>
+                                        <span class="lang-content" data-lang="en" style="display: none;">Cleaning
+                                            Products Guide</span>
+                                        <span class="lang-content" data-lang="ar">دليل منتجات التنظيف</span>
+                                    </h4>
+                                    <span>10 يناير 2024</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="./assets/images/upload-16.jpg" alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>
+                                        <span class="lang-content" data-lang="en" style="display: none;">DIY Polishing
+                                            Tips</span>
+                                        <span class="lang-content" data-lang="ar">نصائح تلميع ذاتية</span>
+                                    </h4>
+                                    <span>8 يناير 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">
+                            <span class="lang-content" data-lang="en" style="display: none;">Contact Us</span>
+                            <span class="lang-content" data-lang="ar">اتصل بنا</span>
+                        </h3>
+                        <div class="contact-widget">
+                            <a href="tel:0536550372" class="btn btn-primary"
+                                style="width: 100%; text-align: center; margin-bottom: 15px;">
+                                <i class="fas fa-phone"></i>
+                                0536550372
+                            </a>
+                            <a href="https://wa.me/966536550372" class="btn btn-outline"
+                                style="width: 100%; text-align: center;background-color: #25d366;" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                واتساب
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg"></div>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo">
+                            <img src="./assets/images/app-logo.png" alt="Floor Care Logo" class="logo-icon">
+                            <div class="logo-text">
+                                <span class="logo-title">جلي بلاط الرياض</span>
+                                <span class="logo-subtitle">Floor Care</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        <span class="lang-content" data-lang="en" style="display: none;">Professional floor polishing
+                            specialists in Riyadh, delivering exceptional quality and craftsmanship since 2008.</span>
+                        <span class="lang-content" data-lang="ar">متخصصون في جلي البلاط في الرياض، نقدم جودة وحرفية
+                            استثنائية منذ عام 2008.</span>
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>
+                        <span class="lang-content" data-lang="en" style="display: none;">Our Services</span>
+                        <span class="lang-content" data-lang="ar">خدماتنا</span>
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="#">
+                                <span class="lang-content" data-lang="en" style="display: none;">Floor Polishing</span>
+                                <span class="lang-content" data-lang="ar">جلي البلاط</span>
+                            </a></li>
+                        <li><a href="#">
+                                <span class="lang-content" data-lang="en" style="display: none;">Marble
+                                    Restoration</span>
+                                <span class="lang-content" data-lang="ar">ترميم الرخام</span>
+                            </a></li>
+                        <li><a href="#">
+                                <span class="lang-content" data-lang="en" style="display: none;">Floor
+                                    Maintenance</span>
+                                <span class="lang-content" data-lang="ar">صيانة الأرضيات</span>
+                            </a></li>
+                        <li><a href="#">
+                                <span class="lang-content" data-lang="en" style="display: none;">Commercial
+                                    Polishing</span>
+                                <span class="lang-content" data-lang="ar">جلي تجاري</span>
+                            </a></li>
+                        <li><a href="#">
+                                <span class="lang-content" data-lang="en" style="display: none;">Residential
+                                    Polishing</span>
+                                <span class="lang-content" data-lang="ar">جلي سكني</span>
+                            </a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>
+                        <span class="lang-content" data-lang="en" style="display: none;">Quick Links</span>
+                        <span class="lang-content" data-lang="ar">روابط سريعة</span>
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="جلي-بلاط-الرياض.html">
+                                <span class="lang-content" data-lang="en" style="display: none;">Home</span>
+                                <span class="lang-content" data-lang="ar">الرئيسية</span>
+                            </a></li>
+                        <li><a href="#services">
+                                <span class="lang-content" data-lang="en" style="display: none;">Services</span>
+                                <span class="lang-content" data-lang="ar">الخدمات</span>
+                            </a></li>
+                        <li><a href="#gallery">
+                                <span class="lang-content" data-lang="en" style="display: none;">Gallery</span>
+                                <span class="lang-content" data-lang="ar">المعرض</span>
+                            </a></li>
+                        <li><a href="المدونة-جلي-بلاط.html">
+                                <span class="lang-content" data-lang="en" style="display: none;">Blog</span>
+                                <span class="lang-content" data-lang="ar">المدونة</span>
+                            </a></li>
+                        <li><a href="#contact">
+                                <span class="lang-content" data-lang="en" style="display: none;">Contact</span>
+                                <span class="lang-content" data-lang="ar">تواصل</span>
+                            </a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>
+                        <span class="lang-content" data-lang="en" style="display: none;">Contact Info</span>
+                        <span class="lang-content" data-lang="ar">معلومات التواصل</span>
+                    </h4>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>
+                                <span class="lang-content" data-lang="en" style="display: none;">Riyadh, Saudi
+                                    Arabia</span>
+                                <span class="lang-content" data-lang="ar">الرياض، المملكة العربية السعودية</span>
+                            </span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>0536550372</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@floorcare-riyadh.sa</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>
+                                <span class="lang-content" data-lang="en" style="display: none;">24/7 Service
+                                    Available</span>
+                                <span class="lang-content" data-lang="ar">خدمة متاحة 24/7</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>
+                        <span class="lang-content" data-lang="en" style="display: none;">&copy; 2025 جلي بلاط الرياض -
+                            0536550372. All rights reserved.</span>
+                        <span class="lang-content" data-lang="ar">&copy; 2025 جلي بلاط الرياض - 0536550372. جميع الحقوق
+                            محفوظة.</span>
+                    </p>
+                    <p>
+                        <span class="lang-content" data-lang="en" style="display: none;">Professional Floor Polishing
+                            Services in Riyadh</span>
+                        <span class="lang-content" data-lang="ar">خدمات جلي البلاط الاحترافية في الرياض</span>
+                    </p>
+                </div>
+                <div class="footer-certifications">
+                    <div class="cert-badge">
+                        <i class="fas fa-certificate"></i>
+                        <span>
+                            <span class="lang-content" data-lang="en" style="display: none;">Licensed & Insured</span>
+                            <span class="lang-content" data-lang="ar">مرخص ومؤمن</span>
+                        </span>
+                    </div>
+                    <div class="cert-badge">
+                        <i class="fas fa-award"></i>
+                        <span>
+                            <span class="lang-content" data-lang="en" style="display: none;">Quality Guaranteed</span>
+                            <span class="lang-content" data-lang="ar">جودة مضمونة</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966536550372" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function loadFont(name, url) {
+                const oldLink = document.getElementById("dynamic-font");
+                if (oldLink) oldLink.remove();
+
+                const link = document.createElement("link");
+                link.id = "dynamic-font";
+                link.rel = "stylesheet";
+                link.href = url;
+                document.head.appendChild(link);
+            }
+
+            let currentLang = 'ar';
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const heroLangContents = document.querySelectorAll('.hero-lang-content');
+
+            updateAllLanguageContent('ar');
+            document.body.setAttribute('data-current-lang', 'ar');
+
+            function setLanguage(targetLang) {
+                if (targetLang === 'ar') {
+                    document.documentElement.setAttribute('lang', 'ar');
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    document.body.setAttribute('data-current-lang', 'ar');
+                    loadFont("Tajawal", "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600&display=swap");
+                    document.body.style.fontFamily = "'Tajawal', sans-serif";
+                } else {
+                    document.documentElement.setAttribute('lang', 'en');
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    document.body.setAttribute('data-current-lang', 'en');
+                    loadFont("Inter", "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+                    document.body.style.fontFamily = "'Inter', sans-serif";
+                }
+            }
+
+            setLanguage('ar');
+
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const targetLang = this.getAttribute('data-lang');
+
+                    if (targetLang !== currentLang) {
+                        langButtons.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+
+                        updateAllLanguageContent(targetLang);
+                        currentLang = targetLang;
+                        setLanguage(targetLang);
+                    }
+                });
+            });
+
+            function updateAllLanguageContent(lang) {
+                const allLangContents = document.querySelectorAll('.lang-content');
+                allLangContents.forEach(content => {
+                    if (content.getAttribute('data-lang') === lang) {
+                        content.style.display = 'inline';
+                    } else {
+                        content.style.display = 'none';
+                    }
+                });
+            }
+
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+
+            if (mobileToggle && nav) {
+                mobileToggle.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('show');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

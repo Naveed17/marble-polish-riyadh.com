@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جلي بلاط الرياض - Marble Polishing Riyadh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        /* Marble Polishing Page Specific Styles */
+
+        /* Work Details Section */
+        .work-details {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+
+        .work-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .work-image {
+            flex: 1;
+        }
+
+        .work-content {
+            flex: 1;
+        }
+
+        .details-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .work-lang-content[data-lang="en"] {
+            display: none;
+        }
+
+        .work-lang-content[data-lang="ar"] {
+            display: block;
+        }
+
+        .work-features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .feature i {
+            color: var(--success-color);
+            font-size: 1.1rem;
+        }
+
+        .work-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Services Cards Section */
+        .services-cards {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition-smooth);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .card-content p {
+            color: var(--secondary-color);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        /* Gallery Section */
+        .marble-gallery {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 300px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 25px;
+            transform: translateY(100%);
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .work-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .work-image,
+            .work-content {
+                flex: none;
+                width: 100%;
+            }
+
+            .details-image {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .work-details,
+            .services-cards,
+            .marble-gallery {
+                padding: 60px 0;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .work-buttons {
+                justify-content: center;
+            }
+
+            .details-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            .card-image {
+                height: 200px;
+            }
+
+            .work-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .work-buttons .btn {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        /* Language Toggle in Header */
+        .header .language-toggle {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Ensure proper RTL/LTR alignment */
+        [dir="rtl"] .work-container {
+            flex-direction: row-reverse;
+        }
+
+        [dir="ltr"] .work-container {
+            flex-direction: row;
+        }
+
+        /* Card content alignment fixes */
+        .card-content {
+            text-align: right;
+        }
+
+        [dir="ltr"] .card-content {
+            text-align: left;
+        }
+
+        /* Feature alignment */
+        .feature {
+            justify-content: flex-start;
+        }
+
+        [dir="ltr"] .feature {
+            justify-content: flex-start;
+        }
+
+        /* Button alignment in work section */
+        .work-buttons {
+            justify-content: flex-start;
+        }
+
+        [dir="ltr"] .work-buttons {
+            justify-content: flex-start;
+        }
+
+        /* Gallery overlay text alignment */
+        .gallery-overlay {
+            text-align: right;
+        }
+
+        [dir="ltr"] .gallery-overlay {
+            text-align: left;
+        }
+
+        [dir="rtl"] .footer-section h4::after {
+            left: unset;
+            right: 0
+        }
+
+        .nav {
+            width: 100%;
+            margin-inline-start: 60px;
+        }
+
+        .language-toggle {
+            margin-inline-start: auto;
+        }
+
+        .logo-title {
+            width: max-content
+        }
+
+        @media screen and (max-width:768px) {
+            .nav {
+                width: auto;
+                margin-inline-start: 0;
+            }
+
+            .language-toggle {
+                margin-inline-start: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="home blog wp-embed-responsive wp-theme-marble-polish-theme home-page lang-ar">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="./assets/images/app-logo.png" alt="Floor Care Logo" class="logo-icon">
+                    <div class="logo-text">
+                        <span class="logo-title">جلي بلاط الرياض</span>
+                        <span class="logo-subtitle">Floor Care</span>
+                    </div>
+                </div>
+
+                <nav class="nav">
+                    <ul>
+                        <li><a href="جلي-بلاط-الرياض.html" class="active">
+                                <span class="lang-content" data-lang="en" style="display: none;">Marble Polishing</span>
+                                <span class="lang-content" data-lang="ar">جلي بلاط الرياض</span>
+                            </a></li>
+                        <li><a href="تلميع-الرخام-الرياض.html">
+                                <span class="lang-content" data-lang="en" style="display: none;">Marble Care</span>
+                                <span class="lang-content" data-lang="ar">تلميع الرخام الرياض</span>
+                            </a></li>
+                        <li><a href="المدونة.html">
+                                <span class="lang-content" data-lang="en" style="display: none;">Blog</span>
+                                <span class="lang-content" data-lang="ar">المدونة</span>
+                            </a></li>
+
+                        <div class="language-toggle">
+                            <button class="lang-btn" data-lang="en">
+                                <i class="fas fa-globe"></i>
+                                English
+                            </button>
+                            <button class="lang-btn active" data-lang="ar">
+                                <i class="fas fa-globe"></i>
+                                العربية
+                            </button>
+                        </div>
+                    </ul>
+
+
+                </nav>
+
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background"
+            style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <!-- English Content -->
+                    <div class="hero-lang-content" data-lang="en" style="display: none;">
+                        <div class="hero-badge">
+                            <i class="fas fa-gem"></i>
+                            <span>Professional Marble Polishing</span>
+                        </div>
+                        <h1 class="hero-title">Marble Polishing Experts</h1>
+                        <p class="hero-subtitle">Specialized marble polishing and restoration services using advanced
+                            techniques to restore natural beauty and lasting shine to your marble surfaces.</p>
+                    </div>
+
+                    <!-- Arabic Content -->
+                    <div class="hero-lang-content" data-lang="ar">
+                        <div class="hero-badge">
+                            <i class="fas fa-gem"></i>
+                            <span>تلميع رخام احترافي</span>
+                        </div>
+                        <h1 class="hero-title">جلي بلاط الرياض</h1>
+                        <p class="hero-subtitle">خدمات متخصصة في تلميع وترميم الرخام باستخدام تقنيات متقدمة لاستعادة
+                            الجمال الطبيعي واللمعان الدائم لأسطح الرخام الخاصة بك.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Details Section -->
+    <section class="work-details">
+        <div class="container">
+            <div class="work-container">
+                <div class="work-image">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        alt="Marble Polishing Work" class="details-image">
+                </div>
+                <div class="work-content">
+                    <!-- English Content -->
+                    <div class="lang-content" data-lang="en" style="display: none;">
+                        <div class="section-badge">
+                            <i class="fas fa-tools"></i>
+                            <span>Our Expertise</span>
+                        </div>
+                        <h2 class="section-title">Professional Marble Polishing Services</h2>
+                        <p class="section-subtitle">We specialize in transforming dull, worn marble surfaces into
+                            stunning, reflective masterpieces using state-of-the-art equipment and premium materials.
+                        </p>
+
+                        <div class="work-features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Advanced polishing techniques</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Professional-grade equipment</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Premium quality materials</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Long-lasting results</span>
+                            </div>
+                        </div>
+
+                        <div class="work-buttons">
+                            <a href="tel:0536550372" class="btn btn-primary">
+                                <i class="fas fa-phone"></i>
+                                Call Now
+                            </a>
+                            <a href="https://wa.me/0536550372" class="btn btn-outline" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Arabic Content -->
+                    <div class="lang-content" data-lang="ar">
+                        <div class="section-badge">
+                            <i class="fas fa-tools"></i>
+                            <span>خبرتنا</span>
+                        </div>
+                        <h2 class="section-title">خدمات تلميع الرخام الاحترافية</h2>
+                        <p class="section-subtitle">نحن متخصصون في تحويل أسطح الرخام الباهتة والمتهالكة إلى تحف فنية
+                            لامعة باستخدام أحدث المعدات ومواد عالية الجودة.</p>
+
+                        <div class="work-features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>تقنيات تلميع متقدمة</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>معدات احترافية</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>مواد عالية الجودة</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>نتائج طويلة الأمد</span>
+                            </div>
+                        </div>
+
+                        <div class="work-buttons">
+                            <a href="tel:0536550372" class="btn btn-primary">
+                                <i class="fas fa-phone"></i>
+                                اتصل الآن
+                            </a>
+                            <a href="https://wa.me/0536550372" class="btn btn-outline" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                واتساب
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Cards Section -->
+    <section class="services-cards">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-gem"></i>
+                    <span class="lang-content" data-lang="en" style="display: none;">Our Services</span>
+                    <span class="lang-content" data-lang="ar">خدماتنا</span>
+                </div>
+                <h2 class="section-title">
+                    <span class="lang-content" data-lang="en" style="display: none;">Comprehensive Marble Care
+                        Solutions</span>
+                    <span class="lang-content" data-lang="ar">حلول شاملة لعناية الرخام</span>
+                </h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="./assets/images/upload-1.jpg" alt="Marble Polishing">
+                    </div>
+                    <div class="card-content">
+                        <h3>
+                            <span class="lang-content" data-lang="en" style="display: none;">Marble Polishing</span>
+                            <span class="lang-content" data-lang="ar">تلميع الرخام</span>
+                        </h3>
+                        <p>
+                            <span class="lang-content" data-lang="en" style="display: none;">Professional polishing to
+                                restore natural shine and luster to marble surfaces</span>
+                            <span class="lang-content" data-lang="ar">تلميع احترافي لاستعادة اللمعان الطبيعي للأسطح
+                                الرخامية</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="./assets/images/upload-7.jpg" alt="Marble Restoration">
+                    </div>
+                    <div class="card-content">
+                        <h3>
+                            <span class="lang-content" data-lang="en" style="display: none;">Marble Restoration</span>
+                            <span class="lang-content" data-lang="ar">ترميم الرخام</span>
+                        </h3>
+                        <p>
+                            <span class="lang-content" data-lang="en" style="display: none;">Complete restoration of
+                                damaged or worn marble surfaces</span>
+                            <span class="lang-content" data-lang="ar">ترميم كامل للأسطح الرخامية التالفة أو
+                                البالية</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="./assets/images/upload-8.jpg" alt="Marble Sealing">
+                    </div>
+                    <div class="card-content">
+                        <h3>
+                            <span class="lang-content" data-lang="en" style="display: none;">Marble Sealing</span>
+                            <span class="lang-content" data-lang="ar">عزل الرخام</span>
+                        </h3>
+                        <p>
+                            <span class="lang-content" data-lang="en" style="display: none;">Protective sealing to
+                                prevent stains and damage</span>
+                            <span class="lang-content" data-lang="ar">عزل وقائي لمنع البقع والتلف</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="./assets/images/upload-9.jpg" alt="Floor Polishing">
+                    </div>
+                    <div class="card-content">
+                        <h3>
+                            <span class="lang-content" data-lang="en" style="display: none;">Floor Polishing</span>
+                            <span class="lang-content" data-lang="ar">تلميع الأرضيات</span>
+                        </h3>
+                        <p>
+                            <span class="lang-content" data-lang="en" style="display: none;">Specialized floor polishing
+                                for all types of marble floors</span>
+                            <span class="lang-content" data-lang="ar">تلميع متخصص للأرضيات لجميع أنواع الأرضيات
+                                الرخامية</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="./assets/images/upload-5.jpg" alt="Staircase Polishing">
+                    </div>
+                    <div class="card-content">
+                        <h3>
+                            <span class="lang-content" data-lang="en" style="display: none;">Staircase Polishing</span>
+                            <span class="lang-content" data-lang="ar">تلميع السلالم</span>
+                        </h3>
+                        <p>
+                            <span class="lang-content" data-lang="en" style="display: none;">Expert polishing for marble
+                                staircases and steps</span>
+                            <span class="lang-content" data-lang="ar">تلميع احترافي للسلالم والدرجات الرخامية</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="./assets/images/upload-10.jpg" alt="Wall Polishing">
+                    </div>
+                    <div class="card-content">
+                        <h3>
+                            <span class="lang-content" data-lang="en" style="display: none;">Wall Polishing</span>
+                            <span class="lang-content" data-lang="ar">تلميع الجدران</span>
+                        </h3>
+                        <p>
+                            <span class="lang-content" data-lang="en" style="display: none;">Professional polishing for
+                                marble walls and surfaces</span>
+                            <span class="lang-content" data-lang="ar">تلميع احترافي للجدران والأسطح الرخامية</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="marble-gallery">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-images"></i>
+                    <span class="lang-content" data-lang="en" style="display: none;">Our Gallery</span>
+                    <span class="lang-content" data-lang="ar">معرض الأعمال</span>
+                </div>
+                <h2 class="section-title">
+                    <span class="lang-content" data-lang="en" style="display: none;">Marble Polishing Portfolio</span>
+                    <span class="lang-content" data-lang="ar">معرض تلميع الرخام</span>
+                </h2>
+                <p class="section-subtitle">
+                    <span class="lang-content" data-lang="en" style="display: none;">Browse through our completed marble
+                        polishing projects and see the transformation we deliver</span>
+                    <span class="lang-content" data-lang="ar">تصفح مشاريع تلميع الرخام المكتملة وشاهد التحول الذي
+                        نقدمه</span>
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./assets/images/upload-11.jpg" alt="Marble Polishing Project 1">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="lang-content" data-lang="en" style="display: none;">Floor Polishing</span>
+                            <span class="lang-content" data-lang="ar">تلميع الأرضيات</span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="./assets/images/upload-12.jpg" alt="Marble Polishing Project 2">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="lang-content" data-lang="en" style="display: none;">Countertop
+                                Restoration</span>
+                            <span class="lang-content" data-lang="ar">ترميم أسطح العمل</span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="./assets/images/upload-13.jpg" alt="Marble Polishing Project 3">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="lang-content" data-lang="en" style="display: none;">Bathroom Marble</span>
+                            <span class="lang-content" data-lang="ar">رخام الحمامات</span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="./assets/images/upload-14.jpg" alt="Marble Polishing Project 4">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="lang-content" data-lang="en" style="display: none;">Before & After</span>
+                            <span class="lang-content" data-lang="ar">قبل وبعد</span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="./assets/images/upload-5.jpg" alt="Marble Polishing Project 5">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="lang-content" data-lang="en" style="display: none;">Staircase Work</span>
+                            <span class="lang-content" data-lang="ar">عمل السلالم</span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="./assets/images/upload-16.jpg" alt="Marble Polishing Project 6">
+                    <div class="gallery-overlay">
+                        <h4>
+                            <span class="lang-content" data-lang="en" style="display: none;">Wall Polishing</span>
+                            <span class="lang-content" data-lang="ar">تلميع الجدران</span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg"></div>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo">
+                            <img src="./assets/images/app-logo.png" alt="Floor Care Logo" class="logo-icon">
+                            <div class="logo-text">
+                                <span class="logo-title">جلي بلاط الرياض</span>
+                                <span class="logo-subtitle">Floor Care</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        <span class="lang-content" data-lang="en" style="display: none;">Leading construction and marble
+                            polishing specialists
+                            in Riyadh, delivering exceptional quality and craftsmanship since 2008.</span>
+                        <span class="lang-content" data-lang="ar">متخصصون رائدون في البناء وتلميع
+                            الرخام في الرياض، نقدم جودة وحرفية استثنائية منذ عام 2008.</span>
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>
+                        <span class="lang-content" data-lang="en" style="display: none;">Our Services</span>
+                        <span class="lang-content" data-lang="ar">خدماتنا</span>
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">
+                                <span class="lang-content" data-lang="en" style="display: none;">Home
+                                    Construction</span>
+                                <span class="lang-content" data-lang="ar">بناء المنازل</span>
+                            </a></li>
+                        <li><a href="#services">
+                                <span class="lang-content" data-lang="en" style="display: none;">Marble Polishing</span>
+                                <span class="lang-content" data-lang="ar">تلميع الرخام</span>
+                            </a></li>
+                        <li><a href="#services">
+                                <span class="lang-content" data-lang="en" style="display: none;">Floor
+                                    Restoration</span>
+                                <span class="lang-content" data-lang="ar">ترميم الأرضيات</span>
+                            </a></li>
+                        <li><a href="#services">
+                                <span class="lang-content" data-lang="en" style="display: none;">Renovation
+                                    Projects</span>
+                                <span class="lang-content" data-lang="ar">مشاريع التجديد</span>
+                            </a></li>
+                        <li><a href="#services">
+                                <span class="lang-content" data-lang="en" style="display: none;">Commercial Work</span>
+                                <span class="lang-content" data-lang="ar">الأعمال التجارية</span>
+                            </a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>
+                        <span class="lang-content" data-lang="en" style="display: none;">Quick Links</span>
+                        <span class="lang-content" data-lang="ar">روابط سريعة</span>
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">
+                                <span class="lang-content" data-lang="en" style="display: none;">Home</span>
+                                <span class="lang-content" data-lang="ar">الرئيسية</span>
+                            </a></li>
+                        <li><a href="#services">
+                                <span class="lang-content" data-lang="en" style="display: none;">Services</span>
+                                <span class="lang-content" data-lang="ar">الخدمات</span>
+                            </a></li>
+                        <li><a href="#gallery">
+                                <span class="lang-content" data-lang="en" style="display: none;">Gallery</span>
+                                <span class="lang-content" data-lang="ar">المعرض</span>
+                            </a></li>
+                        <li><a href="#contact">
+                                <span class="lang-content" data-lang="en" style="display: none;">Contact</span>
+                                <span class="lang-content" data-lang="ar">تواصل</span>
+                            </a></li>
+                        <li><a href="#gallery">
+                                <span class="lang-content" data-lang="en" style="display: none;">Our Work</span>
+                                <span class="lang-content" data-lang="ar">أعمالنا</span>
+                            </a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>
+                        <span class="lang-content" data-lang="en" style="display: none;">Contact Info</span>
+                        <span class="lang-content" data-lang="ar">معلومات التواصل</span>
+                    </h4>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>
+                                <span class="lang-content" data-lang="en" style="display: none;">Riyadh, Saudi
+                                    Arabia</span>
+                                <span class="lang-content" data-lang="ar">الرياض، المملكة العربية
+                                    السعودية</span>
+                            </span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>0536550372</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>anayat4456@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>
+                                <span class="lang-content" data-lang="en" style="display: none;">Sun - Thu: 8:00 AM -
+                                    6:00 PM</span>
+                                <span class="lang-content" data-lang="ar">الأحد - الخميس: 8:00 ص
+                                    - 6:00 م</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>
+                        <span class="lang-content" data-lang="en" style="display: none;">&copy; 2025 جلي بلاط الرياض
+                            All rights
+                            reserved.</span>
+                        <span class="lang-content" data-lang="ar">&copy; 2025 جلي بلاط الرياض
+                            المحترفة. جميع الحقوق محفوظة.</span>
+                    </p>
+                    <p>
+                        <span class="lang-content" data-lang="en" style="display: none;">Professional Construction &amp;
+                            Marble Polishing
+                            Services in Riyadh</span>
+                        <span class="lang-content" data-lang="ar">خدمات البناء وتلميع الرخام
+                            الاحترافية في الرياض</span>
+                    </p>
+                </div>
+                <div class="footer-certifications">
+                    <div class="cert-badge">
+                        <i class="fas fa-certificate"></i>
+                        <span>
+                            <span class="lang-content" data-lang="en" style="display: none;">Licensed &amp;
+                                Insured</span>
+                            <span class="lang-content" data-lang="ar">مرخص ومؤمن</span>
+                        </span>
+                    </div>
+                    <div class="cert-badge">
+                        <i class="fas fa-award"></i>
+                        <span>
+                            <span class="lang-content" data-lang="en" style="display: none;">Quality Guaranteed</span>
+                            <span class="lang-content" data-lang="ar">جودة مضمونة</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/0536550372" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function loadFont(name, url) {
+                // Remove old font link if exists
+                const oldLink = document.getElementById("dynamic-font");
+                if (oldLink) oldLink.remove();
+
+                // Add new font link
+                const link = document.createElement("link");
+                link.id = "dynamic-font";
+                link.rel = "stylesheet";
+                link.href = url;
+                document.head.appendChild(link);
+            }
+            // ===== LANGUAGE TOGGLE FUNCTIONALITY =====
+            let currentLang = 'ar'; // Set Arabic as default
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const heroLangContents = document.querySelectorAll('.hero-lang-content');
+
+            // Initialize language on page load
+            updateAllLanguageContent('ar');
+            updateSlideLanguage('ar');
+            document.body.setAttribute('data-current-lang', 'ar');
+            function setLanguage(targetLang) {
+                if (targetLang === 'ar') {
+                    document.documentElement.setAttribute('lang', 'ar');
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    document.body.setAttribute('data-current-lang', 'ar');
+
+                    // Load Arabic font (Cairo)
+                    loadFont("Tajawal", "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600&display=swap");
+                    document.body.style.fontFamily = "'Tajawal', sans-serif";
+                } else {
+                    document.documentElement.setAttribute('lang', 'en');
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    document.body.setAttribute('data-current-lang', 'en');
+
+                    // Load English font (Inter)
+                    loadFont("Inter", "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+                    document.body.style.fontFamily = "'Inter', sans-serif";
+                }
+            }
+            setLanguage('ar');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const targetLang = this.getAttribute('data-lang');
+
+                    if (targetLang !== currentLang) {
+                        // Update active button
+                        langButtons.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+
+                        // Update hero section content
+                        heroLangContents.forEach(content => {
+                            if (content.getAttribute('data-lang') === targetLang) {
+                                content.style.display = 'block';
+                            } else {
+                                content.style.display = 'none';
+                            }
+                        });
+
+                        // Update all language content throughout the website
+                        updateAllLanguageContent(targetLang);
+
+                        // Update current language
+                        currentLang = targetLang;
+
+                        // Update slide content language
+                        updateSlideLanguage(targetLang);
+
+
+                        setLanguage(targetLang)
+                    }
+                });
+            });
+
+            function updateAllLanguageContent(lang) {
+                // Update all elements with lang-content class
+                const allLangContents = document.querySelectorAll('.lang-content');
+                allLangContents.forEach(content => {
+                    if (content.getAttribute('data-lang') === lang) {
+                        content.style.display = 'inline';
+                    } else {
+                        content.style.display = 'none';
+                    }
+                });
+            }
+
+            function updateSlideLanguage(lang) {
+                const slideTexts = document.querySelectorAll('.slide-badge span, .slide-title span');
+                slideTexts.forEach(text => {
+                    if (text.classList.contains(lang)) {
+                        text.style.display = 'inline';
+                    } else {
+                        text.style.display = 'none';
+                    }
+                });
+            }
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+
+            if (mobileToggle && nav) {
+                mobileToggle.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+
+                // Close mobile menu when clicking nav links
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('show');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
